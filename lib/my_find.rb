@@ -1,10 +1,16 @@
 require 'pry'
 
-def my_find(collection)
+def my_all?(collection)
   i = 0
-  while i < collection.length
-    return collection[i] if yield(collection[i])
-  end 
-    i = i + 1
-  end
+  block_return_values = []
+    while i < collection.length
+   block_return_values << yield(collection[i])
+  i = i + 1
+ end
+
+ if block_return_values.include?(false)
+   false
+ else
+   true
+ end 
 end
